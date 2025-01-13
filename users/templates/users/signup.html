@@ -1,0 +1,43 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2 class="text-center">Реєстрація</h2>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" class="needs-validation" novalidate>
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary btn-block">Зареєструватись</button>
+        </form>
+
+        <hr>
+        <div class="text-center">
+            Вже є обліковий запис? <a href="{% url 'login' %}">Увійти</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

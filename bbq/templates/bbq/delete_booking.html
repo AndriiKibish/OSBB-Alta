@@ -1,0 +1,9 @@
+{% extends "bbq/base.html" %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h2>Ваше бронювання анульоване!</h2>
+    <a href="{% url 'bbq:my_bookings' %}" class="btn btn-primary">Подивитись своє бронювання</a>
+    <a href="{% url 'bbq:all_bookings' %}" class="btn btn-primary">Подивитись усі бронювання</a>
+</div>
+{% endblock %}

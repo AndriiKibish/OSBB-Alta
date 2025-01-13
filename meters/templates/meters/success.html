@@ -1,0 +1,9 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h2>Дякуємо за показники!</h2>
+    <p>Ваші дані успішно збережені.</p>
+    <a href="{% url 'meters:user_readings' %}" class="btn btn-primary">Подивитись передані показники</a>
+</div>
+{% endblock %}

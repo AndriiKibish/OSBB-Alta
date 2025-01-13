@@ -1,0 +1,18 @@
+{% extends "info/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <h2 class="text-center">Новини</h2>
+</div>
+<div class="row justify-content-center mt-3">
+    <ul>
+    {% for news in news_items %}
+        <li>
+            <a href="{% url 'info:news_detail' news.pk %}">{{ news.title }}</a>
+            <p>{{ news.short_content }}</p>
+            <p><small>Опубліковано: {{ news.publication_date }}</small></p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

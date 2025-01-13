@@ -1,0 +1,41 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Ваші показники</h2>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Дата подання</th>
+                <th>Холодна вода 1</th>
+                {% if not is_group1 %}
+                <th>Холодна вода 2</th>
+                {% endif %}
+                <th>Гаряча вода 1</th>
+                {% if not is_group1 %}
+                <th>Гаряча вода 2</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for reading in readings %}
+                <tr>
+                    <td>{{ reading.submission_date }}</td>
+                    <td>{{ reading.cold_water_1 }}</td>
+                    {% if not is_group1 %}
+                    <td>{{ reading.cold_water_2 }}</td>
+                    {% endif %}
+                     <td>{{ reading.hot_water_1 }}</td>
+                    {% if not is_group1 %}
+                    <td>{{ reading.hot_water_2 }}</td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Ще немає переданих показників</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "info/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+        <h2 class="text-center">Контакти</h2>
+            <table class="table table-bordered mt-4">
+                <thead class="text-center">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Номер телефону</th>
+                        <th>Додаткова інформація</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>{{ contact.comment }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+{% endblock %}

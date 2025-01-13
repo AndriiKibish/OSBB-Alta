@@ -1,0 +1,36 @@
+{% extends "bbq/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 text-center">
+    <h2>Ваші бронювання</h2>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Час</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.date }}</td>
+            <td>{{ booking.time_from }}–{{ booking.time_to }}</td>
+            <td>
+                <form method="POST" action="{% url 'bbq:delete_booking' booking.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Видалити</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Немає бронювань</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

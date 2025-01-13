@@ -1,0 +1,26 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+        <a href="{% url 'meters:user_readings' %}" class="btn btn-primary btn-block">Подивитись мої показники</a>
+        <br>
+        <h2 class="text-center">Передача показників лічильників</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ field.errors|striptags }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary btn-block">Передати показники</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
